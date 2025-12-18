@@ -49,3 +49,11 @@ kinematics:
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
+  indy_eye:
+    x: -0.08     # link6 중심으로부터 카메라 렌즈까지의 거리 (예시값)
+    y: 0.0      
+    z: 0.06     # link6 표면으로부터의 높이 (예시값)
+    roll: 0.0   
+    pitch: 0.0
+    yaw: -1.570796327 # 우선 
+    # yaw: 0.0

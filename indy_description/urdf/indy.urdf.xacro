@@ -10,7 +10,7 @@
     <!-- possible 'indy_type' values: indy7, indy12, indyrp2...-->
     <xacro:arg name="indy_type" default="indy7"/>
 
-    <xacro:arg name="indy_eye" default="false"/>
+    <xacro:arg name="indy_eye" default="true"/>
 
     <!-- parameters -->
     <xacro:arg name="prefix" default="" />

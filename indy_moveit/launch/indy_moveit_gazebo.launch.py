@@ -75,7 +75,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "indy_eye",
-            default_value="false",
+            default_value="true",
             description="Work with Indy Eye",
         )
     )
