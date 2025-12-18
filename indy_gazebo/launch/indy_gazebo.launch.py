@@ -53,7 +53,10 @@ def launch_setup(context, *args, **kwargs):
             initial_joint_controllers,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    # robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }   
 
     rviz_config_file = PathJoinSubstitution(
         [description_package, "rviz_config", "indy.rviz"]
