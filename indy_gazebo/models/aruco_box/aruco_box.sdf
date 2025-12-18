@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="aruco_box">
+    <static>false</static> <link name="link">
+      <visual name="visual">
+        <geometry>
+          <box><size>0.1 0.1 0.1</size></box> </geometry>
+        <material>
+          <script>
+            <!-- <uri>model://indy_gazebo/materials/scripts</uri>
+            <uri>model://indy_gazebo/materials/textures</uri> -->
+            <uri>model://aruco_box/materials/scripts</uri>
+            <uri>model://aruco_box/materials/textures</uri>
+            <name>ArUco/Marker0</name> </script>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <box><size>0.1 0.1 0.1</size></box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

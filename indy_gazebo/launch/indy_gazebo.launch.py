@@ -6,6 +6,8 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+import os
+from ament_index_python.packages import get_package_share_directory
 
 def launch_setup(context, *args, **kwargs):
     description_package = FindPackageShare('indy_description')
@@ -77,11 +79,16 @@ def launch_setup(context, *args, **kwargs):
         arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
     )
 
+    # 월드 파일 경로 설정
+    world_file_name = 'test.world'
+    world_path = os.path.join(get_package_share_directory('indy_gazebo'), 'worlds', world_file_name)
+
     # Gazebo nodes
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [FindPackageShare("gazebo_ros"), "/launch", "/gazebo.launch.py"]
         ),
+        # launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
     )
 
     # Spawn robot

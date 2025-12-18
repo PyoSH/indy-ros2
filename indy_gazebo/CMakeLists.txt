@@ -21,9 +21,19 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 # Install launch files.
+# install(DIRECTORY
+#   launch controller
+#   DESTINATION share/${PROJECT_NAME}/
+# )
+
+# indy_gazebo/CMakeLists.txt에 추가
 install(DIRECTORY
-  launch controller
-  DESTINATION share/${PROJECT_NAME}/
+  launch
+  controller
+  models      
+  # materials   
+  worlds
+  DESTINATION share/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
