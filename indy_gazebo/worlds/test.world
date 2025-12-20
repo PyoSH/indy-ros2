@@ -8,12 +8,19 @@
       <uri>model://ground_plane</uri>
     </include>
 
-    <!-- <model name="aruco_box">
+    <model name="pawnB1-201">
       <include>
-        <uri>model://models/aruco_box</uri>
+        <uri>model://pawnB1</uri>
       </include>
-      <pose>0.6 0.0 0.05 0 0 0</pose> 
-    </model> -->
+      <pose>0.5 0.0 1.0 0 0 0</pose> 
+    </model>
+
+    <model name="target_loc">
+      <include>
+        <uri>model://aruco_visual_marker_7</uri>
+      </include>
+      <pose>-0.2 0.0 0.41 0 0 0</pose> 
+    </model>
 
     <physics type="ode">
       <real_time_update_rate>1000</real_time_update_rate>

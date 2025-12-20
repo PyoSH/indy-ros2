@@ -65,8 +65,6 @@
 
     <link name="$(arg prefix)indy_eye_optical"/>
     <joint name="$(arg prefix)indy_eye_optical_joint" type="fixed">
-        <!-- <origin xyz="0 0 0" rpy="1.5707 -1.5707 0"/> -->
-        <!-- <origin xyz="0 0 0" rpy="0 0 0"/> -->
         <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707 "/>
         <parent link="$(arg prefix)indy_eye"/>
         <child link="$(arg prefix)indy_eye_optical"/>
@@ -75,41 +73,12 @@
     <xacro:indy_eye_sensor 
         prefix="$(arg prefix)" 
         parent="$(arg prefix)indy_eye"
-        camType="depth"
+        camType="camera"
         >
     </xacro:indy_eye_sensor>
 
-    <!-- <gazebo reference="$(arg prefix)indy_eye">
-		<sensor name="indy_eye_camera" type="camera">
-			<visualize>true</visualize>
-			<always_on>true</always_on>
-			<update_rate>30.0</update_rate>
-			<camera name="eye_camera">
-			<horizontal_fov>1.047</horizontal_fov>
-			<image>
-				<width>640</width>
-				<height>480</height>
-				<format>R8G8B8</format>
-			</image>
-			<clip>
-				<near>0.05</near>
-				<far>8.0</far>
-			</clip>
-			</camera>
-			<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-			<ros>
-				<remapping>image_raw:=/camera/image_raw</remapping>
-				<remapping>camera_info:=/camera/camera_info</remapping>
-			</ros>
-			<frame_name>$(arg prefix)indy_eye_optical</frame_name>
-			</plugin>
-		</sensor>
-	</gazebo> -->
-
     <xacro:if value="$(arg sim_gazebo)">
         <gazebo reference="world"> </gazebo>
-        <!-- <gazebo reference="indy_"> </gazebo> -->
-
         <gazebo>
             <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so" >
                 <parameters>$(arg simulation_controllers)</parameters>

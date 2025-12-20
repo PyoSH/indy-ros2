@@ -95,7 +95,7 @@ def launch_setup(context, *args, **kwargs):
         PythonLaunchDescriptionSource(
             [FindPackageShare("gazebo_ros"), "/launch", "/gazebo.launch.py"]
         ),
-        # launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
+        launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
     )
 
     # Spawn robot
