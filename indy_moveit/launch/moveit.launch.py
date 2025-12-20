@@ -8,6 +8,7 @@ from launch_ros.substitutions import FindPackageShare
 from indy_moveit.launch_common import load_yaml
 from launch_ros.descriptions import ComposableNode
 from launch_ros.actions import Node, ComposableNodeContainer
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def launch_setup(context, *args, **kwargs):
@@ -42,7 +43,10 @@ def launch_setup(context, *args, **kwargs):
             prefix,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    # robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
 
     # MoveIt Configuration
     robot_description_semantic_content = Command(
@@ -64,7 +68,10 @@ def launch_setup(context, *args, **kwargs):
             prefix,
         ]
     )
-    robot_description_semantic = {"robot_description_semantic": robot_description_semantic_content}
+    # robot_description_semantic = {"robot_description_semantic": robot_description_semantic_content}
+    robot_description_semantic = {
+        "robot_description_semantic": ParameterValue(robot_description_semantic_content, value_type=str)
+    }
 
     robot_description_kinematics = PathJoinSubstitution(
         [moveit_config_package, "moveit_config", "kinematics.yaml"]
