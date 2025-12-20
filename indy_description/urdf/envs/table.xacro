@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <!-- table macro -->    <xacro:macro name="work_table" params="name parent xyz rpy">
+        <link name="${name}">            
+            <visual>
+                <geometry>
+                    <box size="1.5 1 0.4"/>
+                </geometry>
+                <material name="gray">
+                    <color rgba="0.3 0.6 0.3 1"/>
+                </material>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="1.5 1 0.4"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="30"/>
+                <inertia ixx="1" iyy="1" izz="1" ixy="0" ixz="0" iyz="0"/>            
+            </inertial>
+        </link>
+        <joint name="${name}_fixed_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child  link="${name}"/>
+            <origin xyz="${xyz}" rpy="${rpy}"/>        
+        </joint>
+    </xacro:macro>
+</robot>

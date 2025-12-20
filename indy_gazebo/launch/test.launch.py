@@ -33,8 +33,7 @@ def launch_setup(context, *args, **kwargs):
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            # PathJoinSubstitution([description_package, "urdf", "indy.urdf.xacro"]),
-            PathJoinSubstitution([description_package, "urdf", "indy_on_table.urdf.xacro"]),
+            PathJoinSubstitution([description_package, "urdf", "indy.urdf.xacro"]),
             " ",
             "name:=",
             name,
@@ -55,9 +54,6 @@ def launch_setup(context, *args, **kwargs):
         ]
     )
     robot_description = {"robot_description": robot_description_content}
-    # robot_description = {
-    #     "robot_description": ParameterValue(robot_description_content, value_type=str)
-    # }   
 
     rviz_config_file = PathJoinSubstitution(
         [description_package, "rviz_config", "indy.rviz"]
@@ -92,7 +88,7 @@ def launch_setup(context, *args, **kwargs):
         PythonLaunchDescriptionSource(
             [FindPackageShare("gazebo_ros"), "/launch", "/gazebo.launch.py"]
         ),
-        launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
+        # launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
     )
 
     # Spawn robot
@@ -111,7 +107,6 @@ def launch_setup(context, *args, **kwargs):
         name="rviz2",
         output="log",
         arguments=["-d", rviz_config_file],
-        parameters=[{"use_sim_time": True}], # 이 줄을 추가하세요!
     )
 
     # Delay start joint_state_broadcaster

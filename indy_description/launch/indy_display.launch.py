@@ -58,7 +58,7 @@ def generate_launch_description():
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([description_package, "urdf", 'indy.urdf.xacro']),
+            PathJoinSubstitution([description_package, "urdf", 'indy_on_table.urdf.xacro']),
             " ",
             "name:=",
             name,
