@@ -8,6 +8,7 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 import os
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.parameter_descriptions import ParameterValue
 
 def launch_setup(context, *args, **kwargs):
     description_package = FindPackageShare('indy_description')
@@ -54,10 +55,10 @@ def launch_setup(context, *args, **kwargs):
             initial_joint_controllers,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
-    # robot_description = {
-    #     "robot_description": ParameterValue(robot_description_content, value_type=str)
-    # }   
+    # robot_description = {"robot_description": robot_description_content}
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }   
 
     rviz_config_file = PathJoinSubstitution(
         [description_package, "rviz_config", "indy.rviz"]
@@ -75,12 +76,14 @@ def launch_setup(context, *args, **kwargs):
         executable="spawner",
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
         output="screen",
+        parameters=[{"use_sim_time": True}],
     )
 
     joint_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=["joint_trajectory_controller", "-c", "/controller_manager"],
+        parameters=[{"use_sim_time": True}],
     )
 
     # 월드 파일 경로 설정
@@ -92,7 +95,7 @@ def launch_setup(context, *args, **kwargs):
         PythonLaunchDescriptionSource(
             [FindPackageShare("gazebo_ros"), "/launch", "/gazebo.launch.py"]
         ),
-        launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
+        # launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
     )
 
     # Spawn robot
