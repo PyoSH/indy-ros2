@@ -24,10 +24,8 @@
             <xacro:macro name="define_control_joint" params="joint_index">
                 <joint name="${prefix}${joint_index}">
                     <command_interface name="position">
-                        <!-- <param name="min">{-2*pi}</param>
-                        <param name="max">{2*pi}</param> -->
-                        <param name="min">-2*3.141592654</param>
-                        <param name="max">2*3.141592654</param>
+                        <param name="min">-6.3</param>
+                        <param name="max">6.3</param>
                     </command_interface>
                     <command_interface name="velocity">
                         <param name="min">-3.15</param>

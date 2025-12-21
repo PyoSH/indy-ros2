@@ -114,9 +114,8 @@
             <xacro:define_link link_name="link4" physic_name="link4" visual_name="link4" material="${material_1}" gazebo_material=""/>
             <xacro:define_link link_name="link5" physic_name="link5" visual_name="link5" material="${material_0}" gazebo_material=""/>
 
-            <xacro:if value="${indy_eye and indy_type == 'indy7'}">
+            <xacro:if value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
                 <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6_eye" material="${material_0}" gazebo_material=""/>
-                <link name="${prefix}indy_eye"/>
             </xacro:if>
             <xacro:unless value="${indy_eye and not (indy_type == 'indyrp2' or indy_type == 'indyrp2_v2')}">
                 <xacro:define_link link_name="link6" physic_name="link6" visual_name="link6" material="${material_0}" gazebo_material=""/>
@@ -218,11 +217,7 @@
             <xacro:define_joint joint_type="revolute" joint_index="joint3" parent_link="link3" child_link="link4"/>
             <xacro:define_joint joint_type="revolute" joint_index="joint4" parent_link="link4" child_link="link5"/>
             <xacro:define_joint joint_type="revolute" joint_index="joint5" parent_link="link5" child_link="link6"/>
-
-            <xacro:if value="${indy_eye and indy_type=='indy7'}">
-                <xacro:define_joint joint_type="fixed" joint_index="indy_eye" parent_link="link6" child_link="indy_eye"/>
-            </xacro:if>
-
+            
             <xacro:if value="${indy_type == 'indyrp2' or indy_type == 'indyrp2_v2'}">
                 <xacro:define_joint joint_type="revolute" joint_index="joint6" parent_link="link6" child_link="link7"/>
                 <xacro:define_joint joint_type="fixed" joint_index="tcp" parent_link="link7" child_link="tcp"/>
@@ -242,6 +237,5 @@
 
         <!-- Add URDF transmission elements (for ros_control) -->
         <!-- <xacro:indy_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" indy_type="${indy_type}"/> -->
-
     </xacro:macro>
 </robot>

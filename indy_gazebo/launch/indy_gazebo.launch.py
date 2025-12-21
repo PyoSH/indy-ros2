@@ -34,8 +34,8 @@ def launch_setup(context, *args, **kwargs):
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            # PathJoinSubstitution([description_package, "urdf", "indy.urdf.xacro"]),
-            PathJoinSubstitution([description_package, "urdf", "indy_on_table.urdf.xacro"]),
+            PathJoinSubstitution([description_package, "urdf", "indy.urdf.xacro"]),
+            # PathJoinSubstitution([description_package, "urdf", "indy_on_table.urdf.xacro"]),
             " ",
             "name:=",
             name,
@@ -95,7 +95,7 @@ def launch_setup(context, *args, **kwargs):
         PythonLaunchDescriptionSource(
             [FindPackageShare("gazebo_ros"), "/launch", "/gazebo.launch.py"]
         ),
-        launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
+        # launch_arguments={'world': world_path}.items(), # 생성한 월드 파일 전달
     )
 
     # Spawn robot

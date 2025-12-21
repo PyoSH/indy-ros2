@@ -3,6 +3,7 @@
 
     <!-- import main macro -->
     <xacro:include filename="$(find indy_description)/urdf/indy_macro.xacro"/>
+    <xacro:include filename="$(find indy_description)/urdf/envs/camera.xacro"/>
 
     <!-- robot name parameter -->
     <xacro:arg name="name" default="indy"/>
@@ -47,6 +48,27 @@
         >
         <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
     </xacro:indy_robot>
+
+    <link name="$(arg prefix)indy_eye"/>
+    <joint name="$(arg prefix)indy_eye_joint" type="fixed">
+        <origin xyz="-0.08 0 0.06" rpy=" 0 -1.5707 0 "/>
+        <parent link="$(arg prefix)link6"/>
+        <child link="$(arg prefix)indy_eye"/>
+    </joint>
+
+    <link name="$(arg prefix)indy_eye_optical"/>
+    <joint name="$(arg prefix)indy_eye_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707 "/>
+        <parent link="$(arg prefix)indy_eye"/>
+        <child link="$(arg prefix)indy_eye_optical"/>
+    </joint>
+
+    <xacro:indy_eye_sensor 
+        prefix="$(arg prefix)" 
+        parent="$(arg prefix)indy_eye"
+        camType="camera"
+        >
+    </xacro:indy_eye_sensor>
 
     <xacro:if value="$(arg sim_gazebo)">
         <gazebo reference="world"> </gazebo>
