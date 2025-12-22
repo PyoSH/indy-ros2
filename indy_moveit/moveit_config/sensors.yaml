@@ -1,0 +1,11 @@
+sensors:
+  - realsense_camera
+realsense_camera:
+  sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+  # point_cloud_topic: /camera/depth/color/points  # RealSense 점군 토픽명
+  point_cloud_topic: /indy_eye_camera/points  # gazebo 점군 토픽명
+  max_range: 2.0         # 인식할 최대 거리 (미터)
+  point_subsample: 1      # 샘플링 비율
+  padding_offset: 0.03    # 로봇 주변 여유 공간 (이격 거리)
+  padding_scale: 1.0
+  filtered_cloud_topic: filtered_cloud

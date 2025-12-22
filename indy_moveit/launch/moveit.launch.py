@@ -107,7 +107,7 @@ def launch_setup(context, *args, **kwargs):
         "publish_transforms_updates": True,
     }
 
-    # sensors_3d_config = os.path.join(moveit_config_package, 'moveit_config', 'sensors.yaml')
+    sensors_3d_config = os.path.join('indy_moveit', 'moveit_config', 'sensors.yaml')
 
     # Start the actual move_group node/action server
     move_group_node = Node(
@@ -122,7 +122,7 @@ def launch_setup(context, *args, **kwargs):
             trajectory_execution,
             moveit_controllers,
             planning_scene_monitor_parameters,
-            # {"sensors_3d_config": sensors_3d_config}, # 센서 설정 포함
+            {"sensors_3d_config": sensors_3d_config}, # 센서 설정 포함
             {"use_sim_time": use_sim_time},
         ],
     )

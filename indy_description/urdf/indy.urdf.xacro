@@ -49,7 +49,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
     </xacro:indy_robot>
 
-    <link name="$(arg prefix)indy_eye"/>
+    <!-- <link name="$(arg prefix)indy_eye"/>
     <joint name="$(arg prefix)indy_eye_joint" type="fixed">
         <origin xyz="-0.08 0 0.06" rpy=" 0 -1.5707 0 "/>
         <parent link="$(arg prefix)link6"/>
@@ -61,6 +61,21 @@
         <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707 "/>
         <parent link="$(arg prefix)indy_eye"/>
         <child link="$(arg prefix)indy_eye_optical"/>
+    </joint> -->
+    <link name="$(arg prefix)indy_eye_optical"/>
+    <joint name="$(arg prefix)indy_eye__optical_joint" type="fixed">
+        <!-- <origin xyz="0.06067 -0.02524 0.02966" rpy=" -1.6192 0.0100 0.2761 "/> -->
+        <origin xyz="0.06067 -0.02524 0.02966" rpy="0.0100 0.04805 1.8475"/> 
+        <parent link="$(arg prefix)link6"/>
+        <child link="$(arg prefix)indy_eye_optical"/>
+    </joint>
+
+    <link name="$(arg prefix)indy_eye"/>
+    <joint name="$(arg prefix)indy_eye_joint" type="fixed">
+        <!-- <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707 "/> -->
+        <origin xyz="0 0 0" rpy="3.1415 -1.5707 -1.5707 "/>
+        <parent link="$(arg prefix)indy_eye_optical"/>
+        <child link="$(arg prefix)indy_eye"/>
     </joint>
 
     <xacro:indy_eye_sensor 
