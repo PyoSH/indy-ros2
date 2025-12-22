@@ -28,6 +28,7 @@ def launch_setup(context, *args, **kwargs):
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution([description_package, "urdf", "indy_on_table.urdf.xacro"]),
+            # PathJoinSubstitution([description_package, "urdf", "indy.urdf.xacro"]),
             " ",
             "name:=",
             name,
