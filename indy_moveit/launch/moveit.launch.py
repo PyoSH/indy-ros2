@@ -8,7 +8,7 @@ from launch_ros.substitutions import FindPackageShare
 from indy_moveit.launch_common import load_yaml
 from launch_ros.descriptions import ComposableNode
 from launch_ros.actions import Node, ComposableNodeContainer
-
+import os
 
 def launch_setup(context, *args, **kwargs):
     description_package = FindPackageShare('indy_description')
@@ -107,6 +107,8 @@ def launch_setup(context, *args, **kwargs):
         "publish_transforms_updates": True,
     }
 
+    # sensors_3d_config = os.path.join(moveit_config_package, 'moveit_config', 'sensors.yaml')
+
     # Start the actual move_group node/action server
     move_group_node = Node(
         package="moveit_ros_move_group",
@@ -120,6 +122,7 @@ def launch_setup(context, *args, **kwargs):
             trajectory_execution,
             moveit_controllers,
             planning_scene_monitor_parameters,
+            # {"sensors_3d_config": sensors_3d_config}, # 센서 설정 포함
             {"use_sim_time": use_sim_time},
         ],
     )

@@ -19,7 +19,7 @@
       <include>
         <uri>model://aruco_visual_marker_7</uri>
       </include>
-      <pose>-0.2 0.0 0.41 0 0 0</pose> 
+      <pose>-0.2 0.3 0.41 0 0 0</pose> 
     </model>
     <!-- <model name="target_loc">
       <include>
